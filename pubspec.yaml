@@ -1,5 +1,5 @@
 name: gym_app
-description: "A new Flutter project."
+description: "Sistema de información para gimnasio."
 publish_to: 'none'
 version: 0.1.0+1
 
@@ -10,6 +10,23 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Estado / arquitectura
+  flutter_riverpod: ^3.3.2
+
+  # Backend remoto
+  supabase_flutter: ^2.15.4
+
+  # Configuración / variables de entorno
+  flutter_dotenv: ^6.0.1
+
+  # Tipografía centralizada
+  google_fonts: ^8.1.0
+
+  # Formateo de fechas y montos (se usará desde Parte 2 en adelante)
+  intl: ^0.20.3
+
+  cupertino_icons: ^1.0.9
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -17,3 +34,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - .env
