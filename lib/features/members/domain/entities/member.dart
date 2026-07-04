@@ -4,7 +4,8 @@
 /// decisión de mantener el proyecto sin build_runner.
 class Member {
   final String id;
-  final String fullName;
+  final String firstName;
+  final String lastName;
   final String documentId;
   final String? email;
   final String? phone;
@@ -16,7 +17,8 @@ class Member {
 
   const Member({
     required this.id,
-    required this.fullName,
+    required this.firstName,
+    required this.lastName,
     required this.documentId,
     required this.isActive,
     required this.createdAt,
@@ -27,10 +29,18 @@ class Member {
     this.address,
   });
 
+  /// Nombre completo, calculado (no se guarda como tal en la base).
+  /// Útil para mostrar en listas, títulos, etc.
+  String get fullName => '$firstName $lastName';
+
+  /// "Apellido, Nombre" — formato típico de directorio/listado alfabético.
+  String get displayNameLastFirst => '$lastName, $firstName';
+
   /// Constructor para un miembro nuevo, todavía sin guardar (sin id
   /// definitivo ni timestamps, que los pone la base de datos).
   factory Member.draft({
-    required String fullName,
+    required String firstName,
+    required String lastName,
     required String documentId,
     String? email,
     String? phone,
@@ -40,7 +50,8 @@ class Member {
     final now = DateTime.now();
     return Member(
       id: '',
-      fullName: fullName,
+      firstName: firstName,
+      lastName: lastName,
       documentId: documentId,
       email: email,
       phone: phone,
@@ -54,7 +65,8 @@ class Member {
 
   Member copyWith({
     String? id,
-    String? fullName,
+    String? firstName,
+    String? lastName,
     String? documentId,
     String? email,
     String? phone,
@@ -66,7 +78,8 @@ class Member {
   }) {
     return Member(
       id: id ?? this.id,
-      fullName: fullName ?? this.fullName,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
       documentId: documentId ?? this.documentId,
       email: email ?? this.email,
       phone: phone ?? this.phone,
@@ -83,7 +96,8 @@ class Member {
   factory Member.fromMap(Map<String, dynamic> map) {
     return Member(
       id: map['id'] as String,
-      fullName: map['full_name'] as String,
+      firstName: map['first_name'] as String,
+      lastName: map['last_name'] as String,
       documentId: map['document_id'] as String,
       email: map['email'] as String?,
       phone: map['phone'] as String?,
@@ -101,7 +115,8 @@ class Member {
   /// No incluye id/created_at/updated_at: esos los maneja la base de datos.
   Map<String, dynamic> toInsertMap() {
     return {
-      'full_name': fullName,
+      'first_name': firstName,
+      'last_name': lastName,
       'document_id': documentId,
       'email': email,
       'phone': phone,

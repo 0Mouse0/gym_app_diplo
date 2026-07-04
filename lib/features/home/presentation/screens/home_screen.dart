@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
-import '../../../members/presentation/screens/members_test_screen.dart';
+import '../../../members/presentation/screens/members_list_screen.dart';
 import '../providers/connection_status.dart';
 import '../providers/connection_status_provider.dart';
 
@@ -37,10 +37,10 @@ class HomeScreen extends ConsumerWidget {
             const SizedBox(height: AppSpacing.lg),
             ElevatedButton.icon(
               onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const MembersTestScreen()),
+                MaterialPageRoute(builder: (_) => const MembersListScreen()),
               ),
               icon: const Icon(Icons.people_outline),
-              label: const Text('Probar CRUD de Miembros (Parte 1)'),
+              label: const Text('Ir a Miembros'),
             ),
             const SizedBox(height: AppSpacing.xl),
             Text('Vista previa del tema', style: theme.textTheme.titleLarge),
