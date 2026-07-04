@@ -13,7 +13,7 @@ Future<void> main() async {
 
   await Supabase.initialize(
     url: Env.supabaseUrl,
-    publishableKey: Env.supabaseAnonKey,
+    publishableKey: Env.supabasePublishableKey,
   );
 
   runApp(const ProviderScope(child: GymApp()));

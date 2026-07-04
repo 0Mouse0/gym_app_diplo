@@ -16,11 +16,14 @@ class Env {
     return value;
   }
 
-  static String get supabaseAnonKey {
-    final value = dotenv.env['SUPABASE_ANON_KEY'];
+  /// Publishable (anon) key del proyecto. Acepta tanto la key legacy
+  /// "anon key" como la nueva "sb_publishable_..." — ambas van en el
+  /// mismo campo de Supabase.initialize().
+  static String get supabasePublishableKey {
+    final value = dotenv.env['SUPABASE_PUBLISHABLE_KEY'];
     if (value == null || value.isEmpty) {
       throw StateError(
-        'SUPABASE_ANON_KEY no está definido. Copiá .env.example a .env '
+        'SUPABASE_PUBLISHABLE_KEY no está definido. Copiá .env.example a .env '
         'y completá tus credenciales de Supabase.',
       );
     }

@@ -32,7 +32,7 @@ class ConnectionStatusNotifier extends StateNotifier<ConnectionStatus> {
       );
     } catch (_) {
       state = const ConnectionStatus.error(
-        'No se pudo conectar. Revisá SUPABASE_URL y SUPABASE_ANON_KEY en tu .env',
+        'No se pudo conectar. Revisá SUPABASE_URL y SUPABASE_PUBLISHABLE_KEY en tu .env',
       );
     }
   }

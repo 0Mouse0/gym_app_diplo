@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
+import '../../../members/presentation/screens/members_test_screen.dart';
 import '../providers/connection_status.dart';
 import '../providers/connection_status_provider.dart';
 
@@ -33,6 +34,14 @@ class HomeScreen extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.lg),
             _ConnectionCard(connection: connection),
+            const SizedBox(height: AppSpacing.lg),
+            ElevatedButton.icon(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const MembersTestScreen()),
+              ),
+              icon: const Icon(Icons.people_outline),
+              label: const Text('Probar CRUD de Miembros (Parte 1)'),
+            ),
             const SizedBox(height: AppSpacing.xl),
             Text('Vista previa del tema', style: theme.textTheme.titleLarge),
             const SizedBox(height: AppSpacing.md),
@@ -70,11 +79,11 @@ class _ConnectionCard extends ConsumerWidget {
 
   Color _dotColor() {
     switch (connection.state) {
-      case SupabaseConnectionState.checking:
+      case AppConnectionState.checking:
         return AppColors.warning;
-      case SupabaseConnectionState.connected:
+      case AppConnectionState.connected:
         return AppColors.success;
-      case SupabaseConnectionState.error:
+      case AppConnectionState.error:
         return AppColors.error;
     }
   }
