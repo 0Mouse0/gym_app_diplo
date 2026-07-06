@@ -96,7 +96,7 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
     if (!isValid || _selectedMembershipId == null) {
       if (_selectedMembershipId == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Elegí a qué membresía corresponde el pago.')),
+          const SnackBar(content: Text('Elige a qué membresía corresponde el pago.')),
         );
       }
       return;
@@ -168,7 +168,7 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
                       ))
                   .toList(),
               onChanged: (value) => _onMembershipSelected(value, membershipsState.memberships),
-              validator: (value) => value == null ? 'Elegí una membresía' : null,
+              validator: (value) => value == null ? 'Elige una membresía' : null,
             ),
             const SizedBox(height: AppSpacing.md),
             TextFormField(

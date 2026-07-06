@@ -130,7 +130,7 @@ class _PaymentsListScreenState extends ConsumerState<PaymentsListScreen> {
                   ? Center(
                       child: Text(
                         state.payments.isEmpty
-                            ? 'Todavía no hay pagos.\nTocá + para registrar el primero.'
+                            ? 'Todavía no hay pagos.\nToca + para registrar el primero.'
                             : 'No hay pagos que coincidan con la búsqueda.',
                         textAlign: TextAlign.center,
                         style: theme.textTheme.bodyMedium,
