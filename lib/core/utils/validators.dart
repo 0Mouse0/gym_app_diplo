@@ -39,4 +39,26 @@ class Validators {
     }
     return null;
   }
+
+  static String? positiveInteger(String? value, [String fieldName = 'Este campo']) {
+    if (value == null || value.trim().isEmpty) {
+      return '$fieldName es obligatorio';
+    }
+    final parsed = int.tryParse(value.trim());
+    if (parsed == null || parsed <= 0) {
+      return '$fieldName debe ser un número entero mayor a 0';
+    }
+    return null;
+  }
+
+  static String? positiveDecimal(String? value, [String fieldName = 'Este campo']) {
+    if (value == null || value.trim().isEmpty) {
+      return '$fieldName es obligatorio';
+    }
+    final parsed = double.tryParse(value.trim().replaceAll(',', '.'));
+    if (parsed == null || parsed <= 0) {
+      return '$fieldName debe ser un número mayor a 0';
+    }
+    return null;
+  }
 }
