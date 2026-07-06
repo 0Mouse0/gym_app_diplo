@@ -180,7 +180,7 @@ class _MembershipFormScreenState extends ConsumerState<MembershipFormScreen> {
                       ))
                   .toList(),
               onChanged: (value) => setState(() => _selectedTypeId = value),
-              validator: (value) => value == null ? 'Elige un tipo de membresía' : null,
+              validator: (value) => value == null ? 'Elegí un tipo de membresía' : null,
             ),
             const SizedBox(height: AppSpacing.md),
             InkWell(
@@ -194,7 +194,7 @@ class _MembershipFormScreenState extends ConsumerState<MembershipFormScreen> {
             InputDecorator(
               decoration: const InputDecoration(labelText: 'Fecha de fin (calculada)'),
               child: Text(
-                projectedEndDate == null ? 'Elige un tipo de membresía primero' : dateFormat.format(projectedEndDate),
+                projectedEndDate == null ? 'Elegí un tipo de membresía primero' : dateFormat.format(projectedEndDate),
                 style: theme.textTheme.bodyLarge,
               ),
             ),
@@ -203,7 +203,7 @@ class _MembershipFormScreenState extends ConsumerState<MembershipFormScreen> {
               contentPadding: EdgeInsets.zero,
               title: Text('Membresía activa', style: theme.textTheme.titleMedium),
               subtitle: Text(
-                'Desactívala si el gimnasio quiere anularla manualmente antes de que venza por fecha.',
+                'Desactivala si el gimnasio quiere anularla manualmente antes de que venza por fecha.',
                 style: theme.textTheme.bodySmall,
               ),
               value: _isActive,
