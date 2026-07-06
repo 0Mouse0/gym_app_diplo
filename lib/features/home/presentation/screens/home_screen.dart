@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../classes/presentation/screens/classes_list_screen.dart';
+import '../../../enrollments/presentation/screens/enrollments_list_screen.dart';
 import '../../../members/presentation/screens/members_list_screen.dart';
 import '../../../membership_types/presentation/screens/membership_types_list_screen.dart';
 import '../../../memberships/presentation/screens/memberships_list_screen.dart';
@@ -77,6 +78,14 @@ class HomeScreen extends ConsumerWidget {
               ),
               icon: const Icon(Icons.fitness_center_outlined),
               label: const Text('Ir a Clases'),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            OutlinedButton.icon(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const EnrollmentsListScreen()),
+              ),
+              icon: const Icon(Icons.how_to_reg_outlined),
+              label: const Text('Ir a Inscripciones'),
             ),
             const SizedBox(height: AppSpacing.xl),
             Text('Vista previa del tema', style: theme.textTheme.titleLarge),

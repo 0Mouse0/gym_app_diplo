@@ -30,6 +30,19 @@ class ClassRepositoryImpl implements ClassRepository {
   }
 
   @override
+  Future<GymClass?> getById(String id) async {
+    try {
+      final row = await _client.from(_table).select().eq('id', id).maybeSingle();
+      if (row == null) return null;
+      return GymClass.fromMap(row);
+    } on PostgrestException catch (e) {
+      throw RepositoryException(_translate(e));
+    } catch (_) {
+      throw const RepositoryException('No se pudo conectar con el servidor.');
+    }
+  }
+
+  @override
   Future<GymClass> create(GymClass gymClass) async {
     try {
       final row = await _client
