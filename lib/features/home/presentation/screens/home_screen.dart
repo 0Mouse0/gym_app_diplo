@@ -3,19 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
-import '../../../classes/presentation/screens/classes_list_screen.dart';
-import '../../../enrollments/presentation/screens/enrollments_list_screen.dart';
-import '../../../members/presentation/screens/members_list_screen.dart';
-import '../../../membership_types/presentation/screens/membership_types_list_screen.dart';
-import '../../../memberships/presentation/screens/memberships_list_screen.dart';
-import '../../../payments/presentation/screens/payments_list_screen.dart';
 import '../../../reports/presentation/screens/reports_home_screen.dart';
 import '../providers/connection_status.dart';
 import '../providers/connection_status_provider.dart';
+import '../widgets/app_drawer.dart';
 
-/// Pantalla temporal de la Parte 0. Sirve para verificar visualmente
-/// que el tema está bien centralizado y que la conexión a Supabase
-/// funciona. Será reemplazada por el dashboard real más adelante.
+/// Pantalla principal: estado de conexión + acceso rápido a
+/// Reportes. El resto de las secciones (Miembros, Membresías, Pagos,
+/// Clases, Inscripciones) viven en el Drawer (ver [AppDrawer]).
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
@@ -25,101 +20,71 @@ class HomeScreen extends ConsumerWidget {
     final connection = ref.watch(connectionStatusProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Gimnasio · Setup base')),
+      appBar: AppBar(title: const Text('Panel principal')),
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Parte 0: tema + conexión', style: theme.textTheme.headlineMedium),
+            Text('Estado de conexión', style: theme.textTheme.titleLarge),
             const SizedBox(height: AppSpacing.sm),
-            Text(
-              'Si ves esta pantalla con estilos y el estado de conexión '
-              'de abajo, el setup base está funcionando.',
-              style: theme.textTheme.bodyMedium,
-            ),
-            const SizedBox(height: AppSpacing.lg),
             _ConnectionCard(connection: connection),
-            const SizedBox(height: AppSpacing.lg),
-            ElevatedButton.icon(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const MembersListScreen()),
-              ),
-              icon: const Icon(Icons.people_outline),
-              label: const Text('Ir a Miembros'),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            OutlinedButton.icon(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const MembershipTypesListScreen()),
-              ),
-              icon: const Icon(Icons.card_membership_outlined),
-              label: const Text('Ir a Tipos de Membresía'),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            OutlinedButton.icon(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const MembershipsListScreen()),
-              ),
-              icon: const Icon(Icons.assignment_ind_outlined),
-              label: const Text('Ir a Membresías'),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            OutlinedButton.icon(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const PaymentsListScreen()),
-              ),
-              icon: const Icon(Icons.payments_outlined),
-              label: const Text('Ir a Pagos'),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            OutlinedButton.icon(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const ClassesListScreen()),
-              ),
-              icon: const Icon(Icons.fitness_center_outlined),
-              label: const Text('Ir a Clases'),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            OutlinedButton.icon(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const EnrollmentsListScreen()),
-              ),
-              icon: const Icon(Icons.how_to_reg_outlined),
-              label: const Text('Ir a Inscripciones'),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            ElevatedButton.icon(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const ReportsHomeScreen()),
-              ),
-              icon: const Icon(Icons.bar_chart_outlined),
-              label: const Text('Ir a Reportes'),
-            ),
             const SizedBox(height: AppSpacing.xl),
-            Text('Vista previa del tema', style: theme.textTheme.titleLarge),
+            Text('Accesos rápidos', style: theme.textTheme.titleLarge),
             const SizedBox(height: AppSpacing.md),
-            Wrap(
-              spacing: AppSpacing.sm,
-              runSpacing: AppSpacing.sm,
-              children: [
-                ElevatedButton(onPressed: () {}, child: const Text('Acción primaria')),
-                OutlinedButton(onPressed: () {}, child: const Text('Secundaria')),
-                TextButton(onPressed: () {}, child: const Text('Texto')),
-              ],
+            _ReportsQuickAccessCard(),
+            const SizedBox(height: AppSpacing.md),
+            Text(
+              'Para Miembros, Membresías, Pagos, Clases e Inscripciones, '
+              'abrí el menú (☰) arriba a la izquierda.',
+              style: theme.textTheme.bodySmall,
             ),
-            const SizedBox(height: AppSpacing.lg),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Ejemplo de campo de formulario',
-                hintText: 'Se usará en los CRUDs',
-              ),
-            ),
-            const SizedBox(height: AppSpacing.lg),
-            Text('Título mediano', style: theme.textTheme.titleMedium),
-            Text('Texto de cuerpo estándar (bodyMedium).', style: theme.textTheme.bodyMedium),
-            Text('Texto pequeño / auxiliar (bodySmall).', style: theme.textTheme.bodySmall),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ReportsQuickAccessCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Card(
+      color: AppColors.primary,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => const ReportsHomeScreen()),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Row(
+            children: [
+              const Icon(Icons.bar_chart_outlined, color: AppColors.textOnPrimary, size: 36),
+              const SizedBox(width: AppSpacing.md),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Reportes',
+                      style: theme.textTheme.titleMedium?.copyWith(color: AppColors.textOnPrimary),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Membresías por vencer, ingresos y ocupación de clases.',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: AppColors.textOnPrimary.withValues(alpha: 0.85),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right, color: AppColors.textOnPrimary),
+            ],
+          ),
         ),
       ),
     );
