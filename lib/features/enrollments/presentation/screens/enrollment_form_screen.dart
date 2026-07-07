@@ -101,7 +101,7 @@ class _EnrollmentFormScreenState extends ConsumerState<EnrollmentFormScreen> {
                 );
               }).toList(),
               onChanged: (value) => setState(() => _selectedClassId = value),
-              validator: (value) => value == null ? 'Elige una clase' : null,
+              validator: (value) => value == null ? 'Elegí una clase' : null,
             ),
             const SizedBox(height: AppSpacing.xs),
             Text(

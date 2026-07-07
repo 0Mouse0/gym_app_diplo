@@ -162,7 +162,7 @@ class _MembershipFormScreenState extends ConsumerState<MembershipFormScreen> {
                       ))
                   .toList(),
               onChanged: (value) => setState(() => _selectedMemberId = value),
-              validator: (value) => value == null ? 'Elige un miembro' : null,
+              validator: (value) => value == null ? 'Elegí un miembro' : null,
             ),
             const SizedBox(height: AppSpacing.xs),
             Text(
@@ -180,7 +180,7 @@ class _MembershipFormScreenState extends ConsumerState<MembershipFormScreen> {
                       ))
                   .toList(),
               onChanged: (value) => setState(() => _selectedTypeId = value),
-              validator: (value) => value == null ? 'Elige un tipo de membresía' : null,
+              validator: (value) => value == null ? 'Elegí un tipo de membresía' : null,
             ),
             const SizedBox(height: AppSpacing.md),
             InkWell(
@@ -194,7 +194,7 @@ class _MembershipFormScreenState extends ConsumerState<MembershipFormScreen> {
             InputDecorator(
               decoration: const InputDecoration(labelText: 'Fecha de fin (calculada)'),
               child: Text(
-                projectedEndDate == null ? 'Elige un tipo de membresía primero' : dateFormat.format(projectedEndDate),
+                projectedEndDate == null ? 'Elegí un tipo de membresía primero' : dateFormat.format(projectedEndDate),
                 style: theme.textTheme.bodyLarge,
               ),
             ),

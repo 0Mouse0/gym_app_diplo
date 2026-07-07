@@ -9,6 +9,7 @@ import '../../../members/presentation/screens/members_list_screen.dart';
 import '../../../membership_types/presentation/screens/membership_types_list_screen.dart';
 import '../../../memberships/presentation/screens/memberships_list_screen.dart';
 import '../../../payments/presentation/screens/payments_list_screen.dart';
+import '../../../reports/presentation/screens/reports_home_screen.dart';
 import '../providers/connection_status.dart';
 import '../providers/connection_status_provider.dart';
 
@@ -86,6 +87,14 @@ class HomeScreen extends ConsumerWidget {
               ),
               icon: const Icon(Icons.how_to_reg_outlined),
               label: const Text('Ir a Inscripciones'),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            ElevatedButton.icon(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const ReportsHomeScreen()),
+              ),
+              icon: const Icon(Icons.bar_chart_outlined),
+              label: const Text('Ir a Reportes'),
             ),
             const SizedBox(height: AppSpacing.xl),
             Text('Vista previa del tema', style: theme.textTheme.titleLarge),
