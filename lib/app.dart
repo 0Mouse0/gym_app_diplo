@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'core/theme/app_theme.dart';
-import 'features/home/presentation/screens/home_screen.dart';
+import 'features/auth/presentation/widgets/auth_gate.dart';
 
 class GymApp extends StatelessWidget {
   const GymApp({super.key});
@@ -12,7 +12,7 @@ class GymApp extends StatelessWidget {
       title: 'Gestión de Gimnasio',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
-      home: const HomeScreen(),
+      home: const AuthGate(),
     );
   }
 }

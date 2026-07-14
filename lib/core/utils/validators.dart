@@ -19,7 +19,7 @@ class Validators {
   static String? optionalEmail(String? value) {
     if (value == null || value.trim().isEmpty) return null;
     if (!_emailRegex.hasMatch(value.trim())) {
-      return 'Ingresá un email válido';
+      return 'Ingresa un email válido';
     }
     return null;
   }
@@ -28,7 +28,7 @@ class Validators {
   static String? optionalPhone(String? value) {
     if (value == null || value.trim().isEmpty) return null;
     if (!_phoneRegex.hasMatch(value.trim())) {
-      return 'Ingresá un teléfono válido';
+      return 'Ingresa un teléfono válido';
     }
     return null;
   }

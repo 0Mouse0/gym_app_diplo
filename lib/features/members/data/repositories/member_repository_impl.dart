@@ -103,6 +103,8 @@ class MemberRepositoryImpl implements MemberRepository {
         return 'Ya existe un miembro con ese número de documento.';
       case '23502': // not_null_violation
         return 'Faltan datos obligatorios del miembro.';
+      case '42501':
+        return 'No tienes permiso para hacer esto. Inicia sesión nuevamente.';
       default:
         return 'Ocurrió un error al comunicarse con el servidor.';
     }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../auth/presentation/providers/auth_controller.dart';
 import '../../../classes/presentation/screens/classes_list_screen.dart';
 import '../../../enrollments/presentation/screens/enrollments_list_screen.dart';
 import '../../../members/presentation/screens/members_list_screen.dart';
@@ -68,6 +70,20 @@ class AppDrawer extends StatelessWidget {
               icon: Icons.bar_chart_outlined,
               label: 'Reportes',
               builder: (_) => const ReportsHomeScreen(),
+            ),
+            const Divider(height: 1),
+            Consumer(
+              builder: (context, ref, _) => ListTile(
+                leading: const Icon(Icons.logout, color: AppColors.error),
+                title: Text(
+                  'Cerrar sesión',
+                  style: AppTextStyles.bodyLarge.copyWith(color: AppColors.error),
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  ref.read(authControllerProvider.notifier).signOut();
+                },
+              ),
             ),
           ],
         ),

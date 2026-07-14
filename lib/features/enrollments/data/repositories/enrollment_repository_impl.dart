@@ -82,6 +82,8 @@ class EnrollmentRepositoryImpl implements EnrollmentRepository {
         return 'Este miembro ya está inscrito en esta clase.';
       case '23503':
         return 'El miembro o la clase seleccionada no existe.';
+      case '42501':
+        return 'No tienes permiso para hacer esto. Inicia sesión nuevamente.';
       default:
         return 'Ocurrió un error al comunicarse con el servidor.';
     }

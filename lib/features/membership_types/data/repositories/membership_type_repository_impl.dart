@@ -71,6 +71,8 @@ class MembershipTypeRepositoryImpl implements MembershipTypeRepository {
         return 'Ya existe un tipo de membresía con ese nombre.';
       case '23503':
         return 'No se puede eliminar: hay membresías que usan este tipo.';
+      case '42501':
+        return 'No tienes permiso para hacer esto. Inicia sesión nuevamente.';
       default:
         return 'Ocurrió un error al comunicarse con el servidor.';
     }

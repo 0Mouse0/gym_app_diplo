@@ -96,6 +96,8 @@ class ClassRepositoryImpl implements ClassRepository {
         return 'El cupo y la duración deben ser mayores a 0.';
       case '23503':
         return 'No se puede eliminar: hay inscripciones que dependen de esta clase.';
+      case '42501':
+        return 'No tienes permiso para hacer esto. Inicia sesión nuevamente.';
       default:
         return 'Ocurrió un error al comunicarse con el servidor.';
     }

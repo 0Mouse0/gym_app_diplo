@@ -90,6 +90,8 @@ class PaymentRepositoryImpl implements PaymentRepository {
         return 'Faltan datos obligatorios del pago.';
       case '23514':
         return 'El monto debe ser mayor a 0.';
+      case '42501':
+        return 'No tienes permiso para hacer esto. Inicia sesión nuevamente.';
       default:
         return 'Ocurrió un error al comunicarse con el servidor.';
     }

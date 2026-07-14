@@ -128,6 +128,8 @@ class MembershipRepositoryImpl implements MembershipRepository {
         return 'El miembro o el tipo de membresía seleccionado no existe.';
       case '23502':
         return 'Faltan datos obligatorios de la membresía.';
+      case '42501':
+        return 'No tienes permiso para hacer esto. Inicia sesión nuevamente.';
       default:
         return 'Ocurrió un error al comunicarse con el servidor.';
     }
